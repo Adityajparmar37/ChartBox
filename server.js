@@ -13,6 +13,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 
+
 //SET static folder
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -20,16 +21,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 const botName = 'ChartBox';
 //runs when client connect
 
+
+
+
 io.on('connection', socket => {
     console.log('New WS Connection...');
 
-    socket.on('joinRoom', ({ username, room }) => {
+    socket.on('joinRoom', ({ username, room}) => {
 
         const user = userJoin(socket.id, username, room);
 
+        //Admin
+        if(user.username == 'Admin'){
+            user.username = 'adi.j.parmar@gmail.com';
+            user.room = 'Admin';
+        }
+
         socket.join(user.room);
-
-
 
         //Welcome new user (new client)
         socket.emit('message', formatMessage(botName, 'Welcome to ChartBox!'));
@@ -38,7 +46,7 @@ io.on('connection', socket => {
 
         socket.broadcast
             .to(user.room)
-            .emit('message', formatMessage(botName, ` ${user.username} has joined the chart`));
+            .emit('message-new', formatMessage(botName, ` ${user.username} has joined the chart`));
 
 
         //side bar user and room info
@@ -46,6 +54,7 @@ io.on('connection', socket => {
         io.to(user.room).emit('roomUsers', {
             room: user.room,
             users: getRoomUsers(user.room)
+
         });
 
     });
@@ -70,7 +79,7 @@ io.on('connection', socket => {
 
         if (user) {
 
-            io.to(user.room).emit('message', formatMessage(botName, ` ${user.username} has left the chat`));
+            io.to(user.room).emit('messageLeft', formatMessage(botName, ` ${user.username} has left the chat`));
 
             io.to(user.room).emit('roomUsers', {
                 room: user.room,

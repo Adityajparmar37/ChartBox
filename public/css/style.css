@@ -17,7 +17,9 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
-	background: var(--light-color);
+	/* background: var(--light-color); */
+	background-color: #191f1be1;
+
 	margin: 20px;
 }
 
@@ -29,13 +31,136 @@ a {
 	text-decoration: none;
 }
 
+
+
+/* -----------------Responsive sidebar ----------------------------------------- */
+
+.overlay {
+	/* position: fixed; */
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity .35s, visibility .35s, height .35s;
+	overflow: hidden;
+	background: black;
+	z-index: -1;
+}
+
+#hamburger-input {
+	display: none;
+}
+
+#hamburger-menu {
+	/* position: fixed; */
+	float: right;
+	top: 20px;
+	width: 50px;
+	height: 50px;
+	display: none;
+	border: none;
+	padding: 0px;
+	margin: 15px 15px;
+	font-family: 'Cabin', Sans-serif;
+	background: linear-gradient(to bottom,
+			#3D0E61, #3D0E61 20%,
+			white 20%, white 40%,
+			#3D0E61 40%, #3D0E61 60%,
+			white 60%, white 80%,
+			#3D0E61 80%, #3D0E61 100%);
+}
+
+
+#hamburger-menu #sidebar-menu {
+	visibility: hidden;
+	position: fixed;
+	top: 0;
+	left: -250px;
+	width: 200px;
+	height: 70%;
+	background: #000000d7;
+	transition: 0.3s;
+	padding: 0px 10px;
+	box-sizing: border-box;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+#hamburger-menu h3 {
+	color: #fff;
+	font-size: 1.5rem;
+	margin-bottom: 10px;
+}
+#hamburger-menu h4{
+	font-size: 1.2rem;
+}
+
+.break{
+	margin-bottom: 20px;
+}
+
+#hamburger-menu ul {
+	padding-left: 0px;
+}
+
+
+#hamburger-menu li {
+	list-style-type: none;
+	line-height: 2rem;
+	font-size: 1.2rem;
+}
+
+
+#hamburger-input:checked+#hamburger-menu #sidebar-menu {
+	visibility: visible;
+	left: 0;
+}
+
+#hamburger-input:checked~.overlay {
+	visibility: visible;
+	opacity: 0.4;
+}
+
+.hamburger-icon {
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+/* ------------------------------------------------- */
+
+
+
+
 .btn {
 	cursor: pointer;
 	padding: 5px 15px;
 	background: var(--light-color);
-	color: var(--dark-color-a);
+	/* color: var(--dark-color-a); */
+	color: aliceblue;
 	border: 0;
 	font-size: 17px;
+	background-color: #8bc35b;
+	border-radius: 5px;
+}
+
+.send {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	font-size: 18px;
+}
+
+.leave {
+	width: 130px;
+	height: 35px;
+	font-size: 18px;
+}
+
+.leave:hover {
+	outline: solid #000;
+	background: #a6a6a6;
+	box-shadow: 3px 3px 2px 0px rgba(0, 0, 0, 0.75) inset;
 }
 
 /* Chat Page */
@@ -45,10 +170,13 @@ a {
 	background: #fff;
 	margin: 30px auto;
 	overflow: hidden;
+	border-radius: 5px;
 }
 
+
+
 .chat-header {
-	background: var(--dark-color-a);
+	background-color: #141c0d;
 	color: #fff;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -56,18 +184,50 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	position: relative;
+}
+
+.logo2 {
+	position: absolute;
+	right: 93%;
+	top: 0px;
+	width: 80px;
+	height: 80px;
+	padding-bottom: 18px;
+}
+
+.heading {
+	margin-left: 50px;
 }
 
 .chat-main {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
+	height: 40vh;
+	position: relative;
+}
+
+.hand {
+	position: absolute;
+	top: 50%;
+	left: 55%;
+	width: 8rem;
+	height: 7rem;
 }
 
 .chat-sidebar {
-	background: var(--dark-color-b);
+	background-color: #000000d7;
 	color: #fff;
 	padding: 20px 20px 60px;
 	overflow-y: scroll;
+}
+
+#room-name {
+	color: #a6e86d
+}
+
+#users {
+	color: #a6e86d
 }
 
 .chat-sidebar h2 {
@@ -91,12 +251,29 @@ a {
 	overflow-y: scroll;
 }
 
+#msg {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	height: 50px;
+}
+
 .chat-messages .message {
 	padding: 10px;
 	margin-bottom: 15px;
-	background-color: var(--light-color);
+	background-color: #a6e86d;
+
 	border-radius: 5px;
 }
+
+.chat-messages .messageNew {
+	padding: 10px;
+	margin-bottom: 15px;
+	text-align: center;
+	/* background-color: #a6e86d; */
+
+	/* border-radius: 5px; */
+}
+
 
 .chat-messages .message .meta {
 	font-size: 15px;
@@ -112,7 +289,7 @@ a {
 
 .chat-form-container {
 	padding: 20px 30px;
-	background-color: var(--dark-color-a);
+	background-color: #141c0d;
 }
 
 .chat-form-container form {
@@ -126,24 +303,66 @@ a {
 	flex: 1;
 }
 
+.or{
+	text-align: center;
+	margin-top: 20px;
+	color: #000;
+}
+
+.admin a{
+	text-decoration: none;
+	color: #ffff;
+}
+
+.admin-user{
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+
 /* Join Page */
 .join-container {
 	max-width: 500px;
 	margin: 80px auto;
 	color: #fff;
+	position: relative;
+}
+
+img {
+	position: absolute;
+	right: 60%;
+	bottom: 84%;
+	width: 80px;
+	height: 80px;
+}
+
+.message-run {
+	position: absolute;
+	margin-top: 250px;
+	top: 0;
+	right: 90%;
+	width: 200px;
+	height: 300px;
 }
 
 .join-header {
 	text-align: center;
 	padding: 20px;
-	background: var(--dark-color-a);
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	/* background: var(--dark-color-a); */
+	background-color: #141c0d;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
 }
 
 .join-main {
 	padding: 30px 40px;
-	background: var(--dark-color-b);
+	/* background: var(--dark-color-b); */
+	background-color: #a6e86d;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
 }
 
 .join-main p {
@@ -157,6 +376,8 @@ a {
 .join-main label {
 	display: block;
 	margin-bottom: 5px;
+	font-size: 1.3rem;
+	color: #000;
 }
 
 .join-main input[type='text'] {
@@ -164,6 +385,7 @@ a {
 	padding: 5px;
 	height: 40px;
 	width: 100%;
+	border-radius: 5px;
 }
 
 .join-main select {
@@ -173,12 +395,32 @@ a {
 	width: 100%;
 }
 
+#room {
+	border-radius: 5px;
+}
+
 .join-main .btn {
 	margin-top: 20px;
 	width: 100%;
+	height: 40px;
+	border-radius: 10px;
+	font-size: 20px;
+}
+
+.join-main .btn:hover {
+
+	outline: solid #000;
+	background: #a6a6a6;
+	box-shadow: 3px 3px 2px 0px rgba(0, 0, 0, 0.75) inset;
 }
 
 @media (max-width: 700px) {
+
+	.chat-container {
+		position: fixed;
+		z-index: -1;
+	}
+
 	.chat-main {
 		display: block;
 	}
@@ -186,4 +428,23 @@ a {
 	.chat-sidebar {
 		display: none;
 	}
+	
+
+	#hamburger-menu {
+		display: inline;
+		width: 35px;
+		height: 35px;
+	}
+
+	.message-run {
+		margin-top: 380px;
+		top: 0;
+		right: 30%;
+	}
+
+	.hand {
+		left: 32%;
+	}
+
+
 }

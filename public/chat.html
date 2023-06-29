@@ -11,10 +11,27 @@
 </head>
 
 <body>
+  <!-- Responive siderbar -->
+  <div class="hamburger">
+    <input type="checkbox" id="hamburger-input" class="burger-shower" />
+    <label class="hamburger-icon" id="hamburger-menu" for="hamburger-input">
+      <nav id="sidebar-menu">
+        <h3><i class="fas fa-comments"></i> Room:</h3>
+        <h4 id="room-list"></h4>
+        <p class="break">.</p>
+        <h3><i class="fas fa-users"></i> Users:</h3>
+        <ul class="users-list">
+        </ul>
+      </nav>
+    </label>
+    <div class="overlay"></div>
+  </div>
+
+
   <div class="chat-container">
     <header class="chat-header">
-      <h1><i class="fas fa-smile"></i> ChatBox</h1>
-      <a href="index.html" class="btn">Leave Room</a>
+      <h1 class="heading"><img src="./logo1 (2).png" class="logo2">ChatBox</h1>
+      <a href="index.html" class="btn leave">Leave Room</a>
     </header>
     <main class="chat-main">
       <div class="chat-sidebar">
@@ -25,14 +42,18 @@
         </ul>
       </div>
       <div class="chat-messages">
-        <!-- <div class="message">
+        <div id="hand-gif">
+          <img src="./hand.gif" class="hand">
+          <!-- <div class="message">
 					</div> -->
+        </div>
       </div>
     </main>
     <div class="chat-form-container">
       <form id="chat-form">
         <input id="msg" type="text" placeholder="Enter Message" required autocomplete="off" />
-        <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        <!-- <input id="uploadfile" type="file" accept="image/*"/> -->
+        <button class="btn send" id="send2"><i class="fas fa-paper-plane"></i> Send</button>
       </form>
     </div>
   </div>
